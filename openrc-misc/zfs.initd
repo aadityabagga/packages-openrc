@@ -122,3 +122,4 @@ status()
 	# show pool status and list
 	$ZPOOL status && echo && $ZPOOL list
 }
+

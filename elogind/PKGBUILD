@@ -2,7 +2,7 @@
 
 pkgbase=elogind
 pkgname=('elogind' 'libelogind')
-pkgver=226.5
+pkgver=229.4
 pkgrel=1
 pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64' 'armv7h')
@@ -11,7 +11,7 @@ license=('GPL' 'LGPL2.1')
 makedepends=('intltool' 'libtool' 'gperf' 'gtk-doc')
 options=('!libtool')
 source=("${pkgbase}-${pkgver}.tar.gz::https://github.com/elogind/elogind/archive/v${pkgver}.tar.gz")
-sha256sums=('5d79cd27b8dfaa163ac29e7b2d2e2f569e170701c1486720a9b6d9d585cad06f')
+sha256sums=('a34012b087d1da4a5c23ab66a3debe34a4dc01cf61fd4ba91a28a9579aafa2ed')
 
 prepare() {
     cd ${pkgbase}-${pkgver}
@@ -42,8 +42,8 @@ package_elogind() {
     groups=('base-nosystemd' 'elogind-nosystemd')
     provides=("elogind=${pkgver}")
     depends=('acl' 'dbus-elogind' 'polkit-elogind' 'eudev' 'libseccomp')
-    conflicts=('systemd-sysvcompat' 'consolekit' 'cgmanager' 'pm-utils')
-    replaces=('consolekit' 'cgmanager' 'pm-utils')
+    conflicts=('systemd-sysvcompat' 'consolekit' 'pm-utils')
+#     replaces=('consolekit' 'pm-utils')
     optdepends=('elogind-openrc: elogind initscript')
     install=elogind.install
 
@@ -52,8 +52,8 @@ package_elogind() {
 
     mkdir ${srcdir}/_libelogind
     mv -v ${pkgdir}/usr/lib/pkgconfig ${srcdir}/_libelogind
-	mv -v ${pkgdir}/usr/include/ ${srcdir}/_libelogind
-	mv -v ${pkgdir}/usr/lib/libelogind*.so* ${srcdir}/_libelogind
+    mv -v ${pkgdir}/usr/include/ ${srcdir}/_libelogind
+    mv -v ${pkgdir}/usr/lib/libelogind*.so* ${srcdir}/_libelogind
 }
 
 package_libelogind(){

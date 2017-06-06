@@ -5,3 +5,4 @@
 command="/usr/bin/thermald"
 command_args="--dbus-enable"
 start_stop_daemon_args="--quiet"
+
