@@ -8,5 +8,5 @@ wget -Nc https://github.com/manjaro/manjaro-tools/archive/${MANJARO_TOOLS_VER}.t
 tar xf ${MANJARO_TOOLS_VER}.tar.gz
 cd manjaro-tools-${MANJARO_TOOLS_VER}
 make SYSCONFDIR=/etc PREFIX=/usr
-sudo make install
+sudo make SYSCONFDIR=/etc PREFIX=/usr install
 cd ..
