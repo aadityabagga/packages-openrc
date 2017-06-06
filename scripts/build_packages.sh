@@ -6,6 +6,6 @@ PKGS=$(cat /tmp/packages_changed.txt)
 for pkg in ${PKGS}; do
 	echo "building $pkg"
 	cd "${pkg}"
-	mkchrootpkg
+	mkchrootpkg "$HOME/manjaro-chroot"
 	cd ..
 done
