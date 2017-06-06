@@ -5,4 +5,4 @@
 
 /bin/echo -e '\x1b[32mChanged packages:\x1b[0m \n'
 #git diff --name-only FETCH_HEAD...HEAD | grep "PKGBUILD$" | cut -d/ -f 1 | tee /tmp/packages_changed.txt
-git diff --name-only | grep "PKGBUILD$" | cut -d/ -f 1 | tee /tmp/packages_changed.txt
+git show --name-only | grep "PKGBUILD$" | cut -d/ -f 1 | tee /tmp/packages_changed.txt
