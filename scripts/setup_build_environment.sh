@@ -4,7 +4,7 @@
 # build and install pacman
 PACMAN_VER=5.0.2
 wget -Nc https://sources.archlinux.org/other/pacman/pacman-${PACMAN_VER}.tar.gz
-tar xvf pacman-${PACMAN_VER}.tar.gz
+tar xf pacman-${PACMAN_VER}.tar.gz
 cd pacman-${PACMAN_VER}
 ./configure --disable-doc
 make
@@ -12,8 +12,10 @@ sudo make install
 cd ..
 
 # build and install manjaro-tools
-git clone --depth=1 https://github.com/manjaro/manjaro-tools.git
-cd manjaro-tools
+MANJARO_TOOLS_VER=0.15.2
+wget -Nc https://github.com/manjaro/manjaro-tools/archive/${MANJARO_TOOLS_VER}.tar.gz
+tar xf ${MANJARO_TOOLS_VER}.tar.gz
+cd manjaro-tools-${MANJARO_TOOLS_VER}
 make
 sudo make install
 cd ..
