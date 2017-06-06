@@ -7,6 +7,6 @@ MANJARO_TOOLS_VER=0.15.2
 wget -Nc https://github.com/manjaro/manjaro-tools/archive/${MANJARO_TOOLS_VER}.tar.gz
 tar xf ${MANJARO_TOOLS_VER}.tar.gz
 cd manjaro-tools-${MANJARO_TOOLS_VER}
-make
+make --prefix=/usr
 sudo make install
 cd ..
