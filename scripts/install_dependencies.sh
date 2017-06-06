@@ -3,4 +3,4 @@
 # https://docs.travis-ci.com/user/installing-dependencies/
 
 sudo apt-get -qq update
-sudo apt-get install -y libarchive13
+sudo apt-get install -y libarchive-dev

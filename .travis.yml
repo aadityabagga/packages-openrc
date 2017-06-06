@@ -6,8 +6,8 @@ sudo: required
 
 #before_install: true
 
-#install:
-#        - wget
+install:
+        - scripts/install_dependencies.sh
 
 before_script:
         - scripts/setup_build_environment.sh
