@@ -6,7 +6,7 @@ ORIGINAL_DIR="$(pwd)"
 # download script to setup chroot for building
 cd "$HOME"
 git clone https://github.com/aadityabagga/manjaro-bootstrap.git
-sudo manjaro-bootstrap/arch-chroot manjaro-chroot
+sudo manjaro-bootstrap/arch-bootstrap.sh manjaro-chroot
 
 # setup pacman mirrorlist
 # TODO
