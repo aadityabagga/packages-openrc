@@ -4,8 +4,3 @@
 
 sudo apt-get -qq update
 sudo apt-get install -y libarchive-dev docbook2x
-
-# for testing
-cat /etc/passwd
-cat /etc/group
-exit 1
