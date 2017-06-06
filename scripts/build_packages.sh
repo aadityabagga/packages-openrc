@@ -6,6 +6,6 @@ PKGS=$(cat /tmp/packages_changed.txt)
 for pkg in ${PKGS}; do
 	echo "building $pkg"
 	cd "${pkg}"
-	makechrootpkg
+	mkchrootpkg
 	cd ..
 done
