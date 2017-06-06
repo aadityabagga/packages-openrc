@@ -4,10 +4,10 @@ dist: trusty
 
 sudo: required
 
-before_install: true
+#before_install: true
 
-install:
-        - wget
+#install:
+#        - wget
 
 before_script:
         - scripts/setup_build_environment.sh
