@@ -8,4 +8,4 @@
 # TODO
 
 # sync pacman
-sudo pacman -Syu
+#sudo pacman -Syu
