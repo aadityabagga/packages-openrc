@@ -1,0 +1,20 @@
+language: bash
+
+dist: trusty
+
+sudo: required
+
+before_install: true
+
+install:
+        - wget
+
+before_script:
+        - scripts/setup_build_environment.sh
+        - scripts/changed_packages.sh
+
+script:
+        - scripts/build_packages.sh
+
+notifications:
+        email: false
