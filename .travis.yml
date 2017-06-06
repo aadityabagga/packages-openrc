@@ -8,6 +8,8 @@ sudo: required
 
 install:
         - scripts/install_dependencies.sh
+        - scripts/setup_pacman.sh
+        - scripts/setup_manjaro_tools.sh
 
 before_script:
         - scripts/setup_build_environment.sh
