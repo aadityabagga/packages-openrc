@@ -7,6 +7,6 @@ for pkg in ${PKGS}; do
 	echo "building $pkg"
 	cd "${pkg}"
 	#mkchrootpkg -r "$HOME/manjaro-chroot" -l "$HOME/manjaro-chroot"
-	buildpkgpkg -r "$HOME/manjaro-chroot" -b unstable -p "$pkg"
+	buildpkg -r "$HOME/manjaro-chroot" -b unstable -p "$pkg"
 	cd ..
 done
