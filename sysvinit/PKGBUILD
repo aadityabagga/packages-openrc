@@ -58,3 +58,4 @@ package()
     rm -r "__temp__"
     mv "$pkgdir/sbin" "$pkgdir/usr/bin"
 }
+
