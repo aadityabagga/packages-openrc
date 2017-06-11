@@ -6,6 +6,7 @@ sudo: required
 
 before_install:
         - mount
+        - ls -la /dev/shm
 
 #install:
         #- scripts/install_dependencies.sh
