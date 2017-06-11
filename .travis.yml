@@ -19,7 +19,10 @@ before_script:
 
 script:
         #- scripts/build_packages.sh
-        - scripts/build_packages_in_a_chroot.sh
+        - scripts/build_packages_in_chroot.sh
+
+after_script:
+        - ls $HOME/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64
 
 notifications:
         email: false
