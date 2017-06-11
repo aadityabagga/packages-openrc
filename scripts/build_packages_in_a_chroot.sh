@@ -23,3 +23,11 @@ sudo umount $DEST/proc/
 sudo umount $DEST/sys/
 sudo umount $DEST/dev/
 sudo umount $DEST/run/
+
+# exit based on whether packages got built
+BUILT_PKG_DIR="${HOME}/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64"
+if [ "$(ls -1 ${BUILT_PKG_DIR} | wc -l)" -eq 0 ]; then
+	exit 1
+else
+	exit 0
+fi
