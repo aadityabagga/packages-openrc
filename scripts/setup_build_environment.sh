@@ -13,8 +13,8 @@ git clone https://github.com/aadityabagga/manjaro-bootstrap.git
 sudo manjaro-bootstrap/arch-bootstrap.sh -d "$HOME/pkg_download" manjaro-chroot
 
 # copy things forward to a new directory within the chroot
-mkdir "${CHROOT_BUILD_DIR_LOC}"
-chmod -R 777 "${CHROOT_BUILD_DIR_LOC}"
+sudo mkdir "${CHROOT_BUILD_DIR_LOC}"
+sudo chmod -R 777 "${CHROOT_BUILD_DIR_LOC}"
 cp -a "${ORIGINAL_DIR}" "${CHROOT_BUILD_DIR_LOC}"
 
 # create user for building package
