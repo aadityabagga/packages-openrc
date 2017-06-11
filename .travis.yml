@@ -17,7 +17,7 @@ before_script:
 
 script:
         #- scripts/build_packages.sh
-	- scripts/build_packages_in_a_chroot.sh
+        - scripts/build_packages_in_a_chroot.sh
 
 notifications:
         email: false
