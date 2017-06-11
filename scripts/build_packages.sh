@@ -12,6 +12,6 @@ PKGS=$(cat /tmp/packages_changed.txt)
 for pkg in ${PKGS}; do
 	echo "building $pkg"
 	cd "${pkg}"
-	buildpkg -b unstable -p "$pkg"
+	buildpkg -c -b unstable -p "$pkg"
 	cd ..
 done

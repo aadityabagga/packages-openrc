@@ -17,6 +17,7 @@ before_script:
 
 script:
         #- scripts/build_packages.sh
+        - mount
         - scripts/build_packages_in_a_chroot.sh
 
 notifications:
