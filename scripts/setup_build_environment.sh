@@ -11,7 +11,7 @@ CHROOT_BUILD_DIR="${CHROOT_DIR}/${CHROOT_BUILD_DIR_NAME}"
 cd "$HOME"
 git clone https://github.com/aadityabagga/manjaro-bootstrap.git
 cd manjaro-bootstrap
-sudo arch-bootstrap.sh -d "$HOME/pkg_download" "${CHROOT_DIR}"
+sudo ./arch-bootstrap.sh -d "$HOME/pkg_download" "${CHROOT_DIR}"
 cd -
 
 # copy things forward to a new directory within the chroot
