@@ -6,17 +6,18 @@ sudo: required
 
 #before_install: true
 
-install:
-        - scripts/install_dependencies.sh
-        - scripts/setup_pacman.sh
-        - scripts/setup_manjaro_tools.sh
+#install:
+        #- scripts/install_dependencies.sh
+        #- scripts/setup_pacman.sh
+        #- scripts/setup_manjaro_tools.sh
 
 before_script:
+        - scripts/changed_packages.sh || travis_terminate 0  # nothing to do if no package changed
         - scripts/setup_build_environment.sh
-        - scripts/changed_packages.sh
 
 script:
-        - scripts/build_packages.sh
+        #- scripts/build_packages.sh
+	- scripts/build_packages_in_a_chroot.sh
 
 notifications:
         email: false

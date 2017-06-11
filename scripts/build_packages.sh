@@ -1,12 +1,17 @@
 #!/bin/bash
 # to build specified packages
 
+# regenerate packages to build in case we are in a chroot
+# assuming we are in base git directory (packages-openrc)
+/bin/bash scripts/changed_packages.sh
+
+# get the changed packages
 PKGS=$(cat /tmp/packages_changed.txt)
 
+# build the changed packages
 for pkg in ${PKGS}; do
 	echo "building $pkg"
 	cd "${pkg}"
-	#mkchrootpkg -r "$HOME/manjaro-chroot" -l "$HOME/manjaro-chroot"
-	buildpkg -r "$HOME/manjaro-chroot" -b unstable -p "$pkg"
+	buildpkg -b unstable -p "$pkg"
 	cd ..
 done
