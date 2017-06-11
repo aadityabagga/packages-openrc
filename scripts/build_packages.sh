@@ -1,9 +1,12 @@
 #!/bin/bash
 # to build specified packages
 
+# commit range for which we are checking package changes
+COMMIT_RANGE=$1
+
 # regenerate packages to build in case we are in a chroot
 # assuming we are in base git directory (packages-openrc)
-/bin/bash scripts/changed_packages.sh > /dev/null
+/bin/bash scripts/changed_packages.sh $COMMIT_RANGE > /dev/null
 
 # get the changed packages
 PKGS=$(cat /tmp/packages_changed.txt)

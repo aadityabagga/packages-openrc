@@ -5,8 +5,9 @@ dist: trusty
 sudo: required
 
 before_install:
-        - mount
-        - ls -la /dev/shm
+#        - mount
+#        - ls -la /dev/shm
+         - echo $TRAVIS_COMMIT_RANGE
 
 #install:
         #- scripts/install_dependencies.sh
@@ -14,12 +15,12 @@ before_install:
         #- scripts/setup_manjaro_tools.sh
 
 before_script:
-        - scripts/changed_packages.sh || travis_terminate 0  # nothing to do if no package changed
+        - scripts/changed_packages.sh $TRAVIS_COMMIT_RANGE || travis_terminate 0  # nothing to do if no package changed
         - scripts/setup_build_environment.sh
 
 script:
         #- scripts/build_packages.sh
-        - scripts/build_packages_in_chroot.sh
+        - scripts/build_packages_in_chroot.sh $TRAVIS_COMMIT_RANGE
 
 after_script:
         - ls $HOME/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64
