@@ -24,7 +24,7 @@ before_script:
 
 script:
     #- .travis/scripts/build_packages.sh
-    - .travis/scripts/build_packages_in_chroot.sh $TRAVIS_COMMIT_RANGE
+    - .travis/scripts/build_packages_in_chroot.sh $TRAVIS_COMMIT_RANGE $INIT
 
 after_script:
     - ls $HOME/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64
