@@ -24,8 +24,8 @@ for pkg in ${PKGS}; do
 	[ ! -e "$pkg" ] && continue  # package probably deleted
 	echo "building $pkg"
 	#cd "${pkg}"
-	travis_fold start "build $pkg"
+	travis_fold start "build_${pkg}"
 	buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg"
-	travis_fold end "build $pkg"
+	travis_fold end "build_${pkg}"
 	#cd ..
 done

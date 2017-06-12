@@ -13,10 +13,11 @@ before_install:
      - echo $TRAVIS_COMMIT_RANGE
      - echo $INIT
 
-#install:
+install:
     #- .travis/scripts/install_dependencies.sh
     #- .travis/scripts/setup_pacman.sh
     #- .travis/scripts/setup_manjaro_tools.sh
+    - sudo locale-gen en_US.UTF-8
 
 before_script:
     - .travis/scripts/changed_packages.sh $TRAVIS_COMMIT_RANGE || travis_terminate 0  # nothing to do if no package changed
