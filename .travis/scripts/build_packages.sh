@@ -16,11 +16,16 @@ INIT=$2
 BUILDPKG_FLAGS=
 [ "$INIT" = openrc ] && BUILDPKG_FLAGS="-u"
 
+# import common functions
+. .travis/scripts/functions.sh
+
 # build the changed packages
 for pkg in ${PKGS}; do
 	[ ! -e "$pkg" ] && continue  # package probably deleted
 	echo "building $pkg"
 	#cd "${pkg}"
+	travis_fold start "build $pkg"
 	buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg"
+	travis_fold end "build $pkg"
 	#cd ..
 done
