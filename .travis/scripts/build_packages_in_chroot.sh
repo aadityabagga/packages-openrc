@@ -18,8 +18,8 @@ sudo mount -t sysfs sys $DEST/sys/
 sudo mount -o bind /dev $DEST/dev/
 sudo mount -o bind /run $DEST/run/
 sudo cp /etc/resolv.conf $DEST/etc/resolv.conf
-sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/packages-openrc; /bin/bash scripts/setup_chroot_environment.sh $user"
-sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/packages-openrc; /bin/bash scripts/build_packages.sh $COMMIT_RANGE"
+sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/packages-openrc; /bin/bash .travis/scripts/setup_chroot_environment.sh $user"
+sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/packages-openrc; /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE"
 
 # cleanup
 sudo umount $DEST/proc/
