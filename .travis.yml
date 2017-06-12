@@ -13,8 +13,8 @@ before_install:
      - echo $TRAVIS_COMMIT_RANGE
      - echo $INIT
 
-#install:
-    #- .travis/scripts/install_dependencies.sh
+install:
+    - .travis/scripts/install_dependencies.sh
     #- .travis/scripts/setup_pacman.sh
     #- .travis/scripts/setup_manjaro_tools.sh
 
