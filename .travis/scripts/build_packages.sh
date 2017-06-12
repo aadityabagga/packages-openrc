@@ -13,6 +13,7 @@ PKGS=$(cat /tmp/packages_changed.txt)
 
 # build the changed packages
 for pkg in ${PKGS}; do
+	[ ! -e "$pkg" ] && continue  # package probably deleted
 	echo "building $pkg"
 	#cd "${pkg}"
 	buildpkg -c -b unstable -p "$pkg"

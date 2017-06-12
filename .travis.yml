@@ -10,17 +10,17 @@ before_install:
          - echo $TRAVIS_COMMIT_RANGE
 
 #install:
-        #- scripts/install_dependencies.sh
-        #- scripts/setup_pacman.sh
-        #- scripts/setup_manjaro_tools.sh
+        #- .travis/scripts/install_dependencies.sh
+        #- .travis/scripts/setup_pacman.sh
+        #- .travis/scripts/setup_manjaro_tools.sh
 
 before_script:
-        - scripts/changed_packages.sh $TRAVIS_COMMIT_RANGE || travis_terminate 0  # nothing to do if no package changed
-        - scripts/setup_build_environment.sh
+        - .travis/scripts/changed_packages.sh $TRAVIS_COMMIT_RANGE || travis_terminate 0  # nothing to do if no package changed
+        - .travis/scripts/setup_build_environment.sh
 
 script:
-        #- scripts/build_packages.sh
-        - scripts/build_packages_in_chroot.sh $TRAVIS_COMMIT_RANGE
+        #- .travis/scripts/build_packages.sh
+        - .travis/scripts/build_packages_in_chroot.sh $TRAVIS_COMMIT_RANGE
 
 after_script:
         - ls $HOME/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64
