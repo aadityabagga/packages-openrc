@@ -11,11 +11,16 @@ COMMIT_RANGE=$1
 # get the changed packages
 PKGS=$(cat /tmp/packages_changed.txt)
 
+# there are special flags for init system
+INIT=$2
+BUILDPKG_FLAGS=
+[ "$INIT" = openrc ] && BUILDPKG_FLAGS="-x"
+
 # build the changed packages
 for pkg in ${PKGS}; do
 	[ ! -e "$pkg" ] && continue  # package probably deleted
 	echo "building $pkg"
 	#cd "${pkg}"
-	buildpkg -c -b unstable -p "$pkg"
+	buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg"
 	#cd ..
 done

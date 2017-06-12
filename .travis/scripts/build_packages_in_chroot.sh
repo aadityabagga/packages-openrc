@@ -11,6 +11,9 @@ user=$USER
 # commit range for which we will be building the packages
 COMMIT_RANGE=$1
 
+# init system for which we will be building the packages
+INIT=$2
+
 # chroot!
 DEST=${CHROOT_DIR_LOC}
 sudo mount -t proc proc $DEST/proc/
@@ -19,7 +22,7 @@ sudo mount -o bind /dev $DEST/dev/
 sudo mount -o bind /run $DEST/run/
 sudo cp /etc/resolv.conf $DEST/etc/resolv.conf
 sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/packages-openrc; /bin/bash .travis/scripts/setup_chroot_environment.sh $user"
-sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/packages-openrc; /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE"
+sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/packages-openrc; /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE $INIT"
 
 # cleanup
 sudo umount $DEST/proc/
