@@ -1,6 +1,9 @@
 #!/bin/bash
 # setup_chroot_environemnt.sh: to setup correct environment *within* the chroot
 
+# setup locale
+locale-gen en_US.UTF-8
+
 # setup pacman
 pacman -S haveged --noconfirm
 haveged -w 1024
