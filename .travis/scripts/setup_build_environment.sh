@@ -13,8 +13,8 @@ git clone https://github.com/aadityabagga/manjaro-bootstrap.git
 cd manjaro-bootstrap
 if [ "$1" = openrc ]; then
 	# setup bootstrap config
-	[ -e "${ORIGINAL_DIR}/.travis/manjaro-bootstrap-config.sh" ] &&
-		cp -v "${ORIGINAL_DIR}/.travis/manjaro-bootstrap-config.sh" config.sh
+	[ -e "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" ] &&
+		cp -v "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" config.sh
 fi
 sudo ./arch-bootstrap.sh -d "$HOME/pkg_download" "${CHROOT_DIR}"
 cd -
