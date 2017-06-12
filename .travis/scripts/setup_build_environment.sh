@@ -7,15 +7,11 @@ CHROOT_DIR="${HOME}/manjaro-chroot"
 CHROOT_BUILD_DIR_NAME="build"
 CHROOT_BUILD_DIR="${CHROOT_DIR}/${CHROOT_BUILD_DIR_NAME}"
 
-# init for which to setup bootstrap environment
-if [ "$INIT" = openrc ]; then
-	# setup bootstrap config
-
 # download script to setup chroot for building
 cd "$HOME"
 git clone https://github.com/aadityabagga/manjaro-bootstrap.git
 cd manjaro-bootstrap
-if [ "$INIT" = openrc ]; then
+if [ "$1" = openrc ]; then
 	# setup bootstrap config
 	[ -e "${ORIGINAL_DIR}/.travis/manjaro-bootstrap-config.sh" ] &&
 		cp -v "${ORIGINAL_DIR}/.travis/manjaro-bootstrap-config.sh" config.sh

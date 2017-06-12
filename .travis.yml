@@ -11,6 +11,7 @@ before_install:
 #    - mount
 #    - ls -la /dev/shm
      - echo $TRAVIS_COMMIT_RANGE
+     - echo $INIT
 
 #install:
     #- .travis/scripts/install_dependencies.sh
@@ -19,7 +20,7 @@ before_install:
 
 before_script:
     - .travis/scripts/changed_packages.sh $TRAVIS_COMMIT_RANGE || travis_terminate 0  # nothing to do if no package changed
-    - .travis/scripts/setup_build_environment.sh
+    - .travis/scripts/setup_build_environment.sh $INIT
 
 script:
     #- .travis/scripts/build_packages.sh
