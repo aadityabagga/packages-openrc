@@ -10,7 +10,7 @@ COMMIT_RANGE=$1
 git show --name-only $COMMIT_RANGE | grep "PKGBUILD$" | cut -d/ -f 1 | tee /tmp/packages_changed_dup.txt
 
 # a package may have changed multiple times leading to multiple entries in the changed file
-uniq /tmp/packages_changed_dup.txt > /tmp/packages_changed.txt
+sort /tmp/packages_changed_dup.txt | uniq > /tmp/packages_changed.txt
 
 # exit based on whether any packages changed
 if [ "$(cat /tmp/packages_changed.txt)" = "" ]; then
