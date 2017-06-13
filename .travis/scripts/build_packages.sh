@@ -39,6 +39,9 @@ for pkg in ${PKGS}; do
 	[ ! "$?" -eq 0 ] && STATUS=1  # build failed
 	if [ "$VERBOSE_BUILD" -eq 1 ]; then
 		travis_ping stop
+		echo "first 150 lines of log"
+		head -n 150 /tmp/build_${pkg}.log
+		echo "..."
 		echo "last 150 lines of log"
 		tail -n 150 /tmp/build_${pkg}.log
 	fi
