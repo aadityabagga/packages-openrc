@@ -28,8 +28,8 @@ for pkg in ${PKGS}; do
 	travis_ping start "$pkg" # since we are redirecting to log file
 	buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg" >> /tmp/build_${pkg}.log
 	travis_ping stop
-	#echo "last 200 lines of log"
-	#tail -n 200 /tmp/build_${pkg}.log
+	echo "last 150 lines of log"
+	tail -n 150 /tmp/build_${pkg}.log
 	travis_fold end "build_${pkg}"
 	#cd ..
 done
