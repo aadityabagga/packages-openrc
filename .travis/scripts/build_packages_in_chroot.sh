@@ -25,6 +25,12 @@ sudo mount -o bind /dev $DEST/dev/
 sudo mount -o bind /run $DEST/run/
 sudo cp /etc/resolv.conf $DEST/etc/resolv.conf
 
+# setup additional specified pacman repos
+read_config
+add_repositories "$DEST"
+# for testing
+echo "${ARCH_REPOS[@]}"
+
 # setup environment in the chroot (pacman keys and stuff)
 travis_fold start setup_chroot_environment
 sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME; /bin/bash .travis/scripts/setup_chroot_environment.sh $user"
