@@ -24,4 +24,29 @@ travis_ping() {
   fi
 }
 
+# functions adapted from https://github.com/mikkeloscar/arch-travis/blob/master/arch-travis.sh
+# read value from .travis.yml
+travis_yml() {
+  ruby -ryaml -e 'puts ARGV[1..-1].inject(YAML.load(File.read(ARGV[0]))) {|acc, key| acc[key] }' .travis.yml $@
+}
+
+# set config variables
+read_config() {
+  local old_ifs=$IFS
+  IFS=$'\n'
+  CONFIG_REPOS=($(travis_yml arch repos))
+  IFS=$old_ifs
+}
+
+# add custom repositories to pacman.conf
+add_repositories() {
+  local arch_chroot=$1
+  for repo in "${CONFIG_REPOS[@]}"; do
+    local splitarr=(${repo//=/ })
+    echo "[${splitarr[0]}]" | sudo tee "$arch_chroot/etc/pacman.conf"
+    echo "Server = ${splitarr[1]}" | sudo tee "$arch_chroot/etc/pacman.conf"
+    echo "" | sudo tee "$arch_chroot/etc/pacman.conf"
+  done
+}
+
 # vim:set ts=2 sw=2 et:

@@ -10,6 +10,7 @@ haveged -w 1024
 pacman-key --init
 pacman-key --populate archlinux manjaro
 pacman-mirrors -g -c Germany
+pacman -Syy
 
 # setup user
 user=$1
