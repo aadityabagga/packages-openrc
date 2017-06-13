@@ -3,7 +3,9 @@
 # NOTE: uses encrypted variables
 
 PKG_LOCATION="$HOME/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64"
-SFREPO="frs.sourceforge.net:/home/frs/project//mefiles/Manjaro/test/"
+SFREPO="frs.sourceforge.net:/home/frs/project/mefiles/Manjaro/test/"
 
-# upload to tmp repo for testing
-rsync -auvLPH --delete-after "${PKG_LOCATION}/*" "${SFUSER}"@"${SFREPO}"
+if [ "$(ls -1 ${PKG_LOCATION} | wc -l)" -gt 0 ]; then
+	# upload to tmp repo for testing
+	rsync -auvLPH --delete-after "${PKG_LOCATION}/*" "${SFUSER}"@"${SFREPO}"
+fi
