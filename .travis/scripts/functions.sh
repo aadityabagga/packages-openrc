@@ -11,12 +11,16 @@ travis_fold() {
 }
 
 # in case of no output for 10 minutes, travis will terminate the job
-# to avoid that, using travis_wait
-# https://docs.travis-ci.com/user/common-build-problems/#My-builds-are-timing-out
-# this is because we are writing to log file while building to avoid travis log limit
-# https://github.com/travis-ci/travis-ci/issues/1382
-run_with_travis_wait() {
-	travis_wait 30 "$@"
+# using a workaround that echos something to the log
+# https://stackoverflow.com/questions/26082444/how-to-work-around-travis-cis-4mb-output-limit/26082445#26082445
+travis_ping() {
+  local operation=$1
+  if [ "$operation" = start ]; then
+    bash -c "while true; do echo \$(date) - building ...; sleep 60s; done" &
+    export PING_LOOP_PID=$!
+  elif [ "$operation" = stop ]; then
+    kill $PING_LOOP_PID
+  fi
 }
 
 # vim:set ts=2 sw=2 et:
