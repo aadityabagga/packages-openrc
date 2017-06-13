@@ -12,7 +12,6 @@ COMMIT_RANGE=$1
 PKGS=$(cat /tmp/packages_changed.txt)
 
 # there are special flags for init system
-INIT=$2
 BUILDPKG_FLAGS=
 [ "$INIT" = openrc ] && BUILDPKG_FLAGS="-u"
 

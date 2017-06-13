@@ -11,9 +11,6 @@ user=$USER
 # commit range for which we will be building the packages
 COMMIT_RANGE=$1
 
-# init system for which we will be building the packages
-INIT=$2
-
 # get repo name
 REPO_NAME=$(echo $TRAVIS_REPO_SLUG | cut -f 2 -d /)
 
@@ -34,7 +31,7 @@ sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME; /bin/bash .tr
 travis_fold end setup_chroot_environment
 
 # build the packages in the chroot
-sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME; /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE $INIT"
+sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME; /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE"
 
 # cleanup
 sudo umount $DEST/proc/
