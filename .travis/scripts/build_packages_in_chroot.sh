@@ -32,8 +32,7 @@ travis_fold end setup_chroot_environment
 
 # build the packages in the chroot
 sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME; /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE"
-# for testing
-echo $?
+BUILD_STATUS=$?
 
 # cleanup
 sudo umount $DEST/proc/
@@ -43,8 +42,15 @@ sudo umount $DEST/run/
 
 # exit based on whether packages got built
 BUILT_PKG_DIR="${HOME}/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64"
-if [ "$(ls -1 ${BUILT_PKG_DIR} | wc -l)" -eq 0 ]; then
-	exit 1
+if [ "$FAIL_STRICT" -eq 0 ]; then
+	# we fail if any package failed to build
+	retval=$BUILD_STATUS
 else
-	exit 0
+	retval=0
+	if [ "$(ls -1 ${BUILT_PKG_DIR} | wc -l)" -eq 0 ]; then
+		# no packages got built, ie, failure
+		retval=1
+	fi
 fi
+
+exit $retval
