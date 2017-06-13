@@ -53,4 +53,5 @@ else
 	fi
 fi
 
+[ ! "$retval" -eq 0 ] && echo "some packages failed to build"
 exit $retval
