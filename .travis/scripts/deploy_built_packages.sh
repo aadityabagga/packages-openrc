@@ -37,5 +37,5 @@ fi
 
 if [ "$(ls -1 ${PKG_LOCATION} | wc -l)" -gt 0 ]; then
 	# upload to tmp repo for testing
-	rsync -auvLPH --delete-after -e ssh "${PKG_LOCATION}" "${SFUSER}"@"${SFREPO}"
+	rsync -auvLPH -e ssh "${PKG_LOCATION}" "${SFUSER}"@"${SFREPO}"
 fi
