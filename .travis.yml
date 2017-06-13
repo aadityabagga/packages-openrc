@@ -37,17 +37,13 @@ before_deploy:
   - chmod 600 $HOME/.ssh/id_rsa
 
 deploy:
+  provider: script
   skip_cleanup: true
-  - provider: script
-    script: ".travis/scripts/deploy_built_packages.sh"
-#      on:
-#      branch: master
-  - provider: script
-    script: ".travis/scripts/deploy_built_packages.sh deploy"
-      on:
-      branch: deploy
+  script: ".travis/scripts/deploy_built_packages.sh"
+  on:
+    branch: deploy
 
 notifications:
   email: false
 
-# vim:set ts=2 sw=2 et:
+# vim:set sw=2 et:
