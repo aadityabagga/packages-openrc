@@ -9,6 +9,10 @@ COMMIT_RANGE=$1
 #git diff --name-only FETCH_HEAD...HEAD | grep "PKGBUILD$" | cut -d/ -f 1 | tee /tmp/packages_changed.txt
 git show --name-only $COMMIT_RANGE | grep "PKGBUILD$" | cut -d/ -f 1 | tee /tmp/packages_changed.txt
 
+# a package may have changed multiple times leading to multiple entries in the changed file
+uniq /tmp/packages_changed.txt > /tmp/packages_changed_uniq.txt
+mv /tmp/packages_changed_uniq.txt /tmp/packages_changed.txt
+
 # exit based on whether any packages changed
 if [ "$(cat /tmp/packages_changed.txt)" = "" ]; then
 	exit 1
