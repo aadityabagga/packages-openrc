@@ -13,8 +13,9 @@ git show --name-only $COMMIT_RANGE | grep "PKGBUILD$" | cut -d/ -f 1 | tee /tmp/
 sort /tmp/packages_changed_dup.txt | uniq > /tmp/packages_changed.txt
 
 # exit based on whether any packages changed
-if [ "$(cat /tmp/packages_changed.txt)" = "" ]; then
-	return 1
-else
-	return 0
+retval=0
+if [ -s /tmp/packages_changed.txt ]; then
+	retval=1
 fi
+
+exit $retval
