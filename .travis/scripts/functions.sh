@@ -43,9 +43,9 @@ add_repositories() {
   local arch_chroot=$1
   for repo in "${CONFIG_REPOS[@]}"; do
     local splitarr=(${repo//=/ })
-    echo "[${splitarr[0]}]" | sudo tee "$arch_chroot/etc/pacman.conf"
-    echo "Server = ${splitarr[1]}" | sudo tee "$arch_chroot/etc/pacman.conf"
-    echo "" | sudo tee "$arch_chroot/etc/pacman.conf"
+    echo "[${splitarr[0]}]" | sudo tee -a "$arch_chroot/etc/pacman.conf"
+    echo "Server = ${splitarr[1]}" | sudo tee -a "$arch_chroot/etc/pacman.conf"
+    echo "" | sudo tee -a "$arch_chroot/etc/pacman.conf"
   done
 }
 
