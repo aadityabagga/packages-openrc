@@ -15,8 +15,9 @@ travis_fold() {
 # https://stackoverflow.com/questions/26082444/how-to-work-around-travis-cis-4mb-output-limit/26082445#26082445
 travis_ping() {
   local operation=$1
+  local item=$2
   if [ "$operation" = start ]; then
-    bash -c "while true; do echo \$(date) - building ...; sleep 60s; done" &
+    bash -c "while true; do echo \$(date) - building $item...; sleep 60s; done" &
     export PING_LOOP_PID=$!
   elif [ "$operation" = stop ]; then
     kill $PING_LOOP_PID

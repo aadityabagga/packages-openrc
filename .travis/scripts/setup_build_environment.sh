@@ -20,11 +20,11 @@ if [ "$1" = openrc ]; then
 		cp -v "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" config.sh
 fi
 
-travis_ping start  # since we are redirecting to log file
-sudo ./arch-bootstrap.sh -d "${HOME}/pkg_download" "${CHROOT_DIR}" >> /tmp/arch-bootstrap.log
+travis_ping start arch-bootstrap # since we are redirecting to log file
+sudo ./arch-bootstrap.sh -d "${HOME}/pkg_download" "${CHROOT_DIR}" >> /tmp/arch-bootstrap.log 2>&1
 travis_ping stop
-echo "last 100 lines of log"
-tail -n 100 /tmp/arch-bootstrap.log
+echo "last 200 lines of log"
+tail -n 200 /tmp/arch-bootstrap.log
 
 cd -
 

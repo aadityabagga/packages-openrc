@@ -25,11 +25,11 @@ for pkg in ${PKGS}; do
 	echo "building $pkg"
 	#cd "${pkg}"
 	travis_fold start "build_${pkg}"
-	travis_ping start  # since we are redirecting to log file
+	travis_ping start "$pkg" # since we are redirecting to log file
 	buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg" >> /tmp/build_${pkg}.log
 	travis_ping stop
-	echo "last 100 lines of log"
-	tail -n 100 /tmp/build_${pkg}.log
+	#echo "last 200 lines of log"
+	#tail -n 200 /tmp/build_${pkg}.log
 	travis_fold end "build_${pkg}"
 	#cd ..
 done
