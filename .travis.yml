@@ -8,8 +8,6 @@ env:
   global:
     - VERBOSE_BUILD=1
     - FAIL_STRICT=1
-    - ARCH_REPOS='arch-openrc=http://downloads.sourceforge.net/project/archopenrc/$repo/$arch'
-    - ARCH_REPOS+=' arch-nosystemd=http://downloads.sourceforge.net/project/archopenrc/$repo/$arch'
 
 before_install:
   - echo $TRAVIS_COMMIT_RANGE
