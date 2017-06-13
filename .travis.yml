@@ -38,9 +38,14 @@ before_deploy:
 
 deploy:
   skip_cleanup: true
-  script: ".travis/scripts/deploy_built_packages.sh"
-#  on:
-#    branch: master
+  - provider: script
+    script: ".travis/scripts/deploy_built_packages.sh"
+#      on:
+#      branch: master
+  - provider: script
+    script: ".travis/scripts/deploy_built_packages.sh deploy"
+      on:
+      branch: deploy
 
 notifications:
   email: false
