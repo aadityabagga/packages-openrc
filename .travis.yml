@@ -13,6 +13,7 @@ before_install:
 #  - ls -la /dev/shm
   - echo $TRAVIS_COMMIT_RANGE
   - echo $INIT
+  - echo $SFUSER
 
 install:
 #  - .travis/scripts/install_dependencies.sh
@@ -38,7 +39,7 @@ after_success:
   - eval "$(ssh-agent -s)"
   - ssh-add $HOME/.ssh/id_rsa
   - echo "StrictHostKeyChecking no" > ~/.ssh/config
-  - .travis/scripts/deploy_built_packages.sh
+  - .travis/scripts/deploy_built_packages.sh $SFUSER
 
 #before_deploy:
 #  - chmod 700 $HOME/.ssh
