@@ -4,8 +4,7 @@
 
 PKG_LOCATION="$HOME/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64/"
 SFREPO="frs.sourceforge.net:/home/frs/project/mefiles/Manjaro/test/packages-openrc/x86_64/"
-#SFUSER="aaditya1234"
-SFUSER=$1
+SFUSER="aaditya1234"
 
 if [ ! -f "${HOME}/.ssh/id_rsa" ]; then
 	# cant deploy without key
@@ -37,8 +36,6 @@ if [ "$ALLOW_DEPLOY" -eq 1 ]; then
 fi
 
 if [ "$(ls -1 ${PKG_LOCATION} | wc -l)" -gt 0 ]; then
-	# for testing
-	echo $SFUSER
 	# upload to tmp repo for testing
 	rsync -auvLPH --delete-after -e ssh "${PKG_LOCATION}" "${SFUSER}"@"${SFREPO}"
 fi
