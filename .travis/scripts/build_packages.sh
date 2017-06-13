@@ -23,13 +23,23 @@ BUILDPKG_FLAGS=
 for pkg in ${PKGS}; do
 	[ ! -e "$pkg" ] && continue  # package probably deleted
 	#cd "${pkg}"
+
 	travis_fold start "build_${pkg}"
 	echo "building $pkg"
-	travis_ping start "$pkg" # since we are redirecting to log file
-	buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg" >> /tmp/build_${pkg}.log
-	travis_ping stop
-	echo "last 150 lines of log"
-	tail -n 150 /tmp/build_${pkg}.log
+	if [ "$VERBOSE_BUILD" -eq 1 ]; then
+		# redirect to log
+		travis_ping start "$pkg"
+		buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg" >> /tmp/build_${pkg}.log
+	else
+		# show package building output
+		buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg"
+	fi
+	if [ "$VERBOSE_BUILD" -eq 1 ]; then
+		travis_ping stop
+		echo "last 150 lines of log"
+		tail -n 150 /tmp/build_${pkg}.log
+	fi
 	travis_fold end "build_${pkg}"
+
 	#cd ..
 done
