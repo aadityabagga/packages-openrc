@@ -32,6 +32,8 @@ travis_fold end setup_chroot_environment
 
 # build the packages in the chroot
 sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME; /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE"
+# for testing
+echo $?
 
 # cleanup
 sudo umount $DEST/proc/
