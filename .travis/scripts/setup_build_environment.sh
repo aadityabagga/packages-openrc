@@ -14,10 +14,9 @@ CHROOT_BUILD_DIR="${CHROOT_DIR}/${CHROOT_BUILD_DIR_NAME}"
 cd "$HOME"
 git clone https://github.com/aadityabagga/manjaro-bootstrap.git
 cd manjaro-bootstrap
-if [ "$INIT" = openrc ]; then
-	# setup bootstrap config
-	[ -e "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" ] &&
-		cp -v "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" config.sh
+# setup bootstrap config
+if [ -e "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" ]; then
+	cp -v "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" config.sh
 fi
 
 LOG_NAME=arch-bootstrap.log

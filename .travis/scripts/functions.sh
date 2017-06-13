@@ -27,7 +27,7 @@ travis_ping() {
 # functions adapted from https://github.com/mikkeloscar/arch-travis/blob/master/arch-travis.sh
 # read value from .travis.yml
 travis_yml() {
-  ruby -ryaml -e 'puts ARGV[1..-1].inject(YAML.load(File.read(ARGV[0]))) {|acc, key| acc[key] }' .travis.yml $@
+  ruby -ryaml -e 'puts ARGV[1..-1].inject(YAML.load(File.read(ARGV[0]))) {|acc, key| acc[key] }' .travis.yml "$@" > /dev/null
 }
 
 # set config variables
