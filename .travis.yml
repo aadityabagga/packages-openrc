@@ -9,17 +9,16 @@ env:
     - secure: wssUDjEATTSeMptenoccnp+ZHZuzI9iAGaa0M3OKWru/ri8ftT9Ot5mIThzc3Td9qOAYuYtY1YqqdOCJKWCTbZx4WVsb22TilmugKbusy9KraFzYM60Mxq68ghB+u8iOQhMYDdFLR8r3g6zoOBTTN7/fICkafFC69Kq6w1MAhRb2WIHAwfNoavRfHxukIw6rLjS1Ybu7Ns6P89ep8tj/mkJZgm4SYUoCrgEuZ3m5X3t5sfNxQaj6zdZe5Mbv/Sk6PaL1MsX3/iQ9a9LF3WCqq5rotMJQTOevkNRXnP8M/mOI6OBelHhWAHZHgHAK9UZcAtLv+3k/4MbinCrorD5lY6CeswIx3y7xTgs2hM5t3TGeMNYLaydqxpPGSLulLDL2INmVENC0cJ8+/M6FGqtHl2t06l0iSO8wdTPpMTqXScAT/Dbwk1nYBV1XNCMJAuoqXkoCZb2S6hsKkCrhALXblst0FXBKhJSovzT9+Y8s0COMQy9QDSBjbnT6HmCeACooPBuB8SUkdPYAF9Uc8iOTcnHVsAmLdtuxzx1laLD7OqCInYHGD0cNyV7KaUqGN4koMqoF5h1S4I2XDfxqOWKTdqGcbAeiigziaftMHJGPEGv6JsYbal5hxb3YO//O2UQW35FVXUSX+K6IHbjV6GUUfA92Rpofp4tNfFs0viDog0c=
 
 before_install:
-- openssl aes-256-cbc -K $encrypted_0778e1758e32_key -iv $encrypted_0778e1758e32_iv
-  -in .travis/files/id_rsa_sf.enc -out ~\/.ssh/id_rsa -d
+  - openssl aes-256-cbc -K $encrypted_0778e1758e32_key -iv $encrypted_0778e1758e32_iv -in .travis/files/id_rsa_sf.enc -out ~\/.ssh/id_rsa -d
 #  - mount
 #  - ls -la /dev/shm
-   - echo $TRAVIS_COMMIT_RANGE
-   - echo $INIT
+  - echo $TRAVIS_COMMIT_RANGE
+  - echo $INIT
 
 install:
-  #- .travis/scripts/install_dependencies.sh
-  #- .travis/scripts/setup_pacman.sh
-  #- .travis/scripts/setup_manjaro_tools.sh
+#  - .travis/scripts/install_dependencies.sh
+#  - .travis/scripts/setup_pacman.sh
+#  - .travis/scripts/setup_manjaro_tools.sh
   - sudo locale-gen en_US.UTF-8
 
 before_script:
@@ -27,7 +26,7 @@ before_script:
   - ".travis/scripts/setup_build_environment.sh $INIT"
 
 script:
-  #- .travis/scripts/build_packages.sh
+#  - .travis/scripts/build_packages.sh
   - ".travis/scripts/build_packages_in_chroot.sh $TRAVIS_COMMIT_RANGE $INIT"
 
 after_script:
@@ -36,8 +35,8 @@ after_script:
 deploy:
   skip_cleanup: true
   script: ".travis/scripts/deploy_built_packages.sh"
-  #on:
-  #  branch: master
+#  on:
+#    branch: master
 
 notifications:
   email: false
