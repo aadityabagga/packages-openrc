@@ -26,6 +26,7 @@ sudo mount -o bind /run $DEST/run/
 sudo cp /etc/resolv.conf $DEST/etc/resolv.conf
 
 # setup additional specified pacman repos
+echo "reading extra pacman repos"
 read_config
 add_repositories "$DEST"
 
