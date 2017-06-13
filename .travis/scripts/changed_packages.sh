@@ -14,7 +14,7 @@ sort /tmp/packages_changed_dup.txt | uniq > /tmp/packages_changed.txt
 
 # exit based on whether any packages changed
 if [ "$(cat /tmp/packages_changed.txt)" = "" ]; then
-	exit 1
+	return 1
 else
-	exit 0
+	return 0
 fi
