@@ -16,7 +16,14 @@ if [ "$1" = openrc ]; then
 	[ -e "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" ] &&
 		cp -v "${ORIGINAL_DIR}/.travis/config/manjaro-bootstrap-config.sh" config.sh
 fi
-sudo ./arch-bootstrap.sh -d "$HOME/pkg_download" "${CHROOT_DIR}"
+
+# import common functions
+. .travis/scripts/functions.sh
+
+run_with_travis_wait "sudo ./arch-bootstrap.sh -d ${HOME}/pkg_download ${CHROOT_DIR} >> /tmp/arch-bootstrap.log"
+echo "last 100 lines of log"
+tail -n 100 /tmp/arch-bootstrap.log
+
 cd -
 
 # copy things forward to a new directory within the chroot

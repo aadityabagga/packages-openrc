@@ -9,3 +9,14 @@ travis_fold() {
   local name=$2
   echo -en "travis_fold:${action}:${name}\r"
 }
+
+# in case of no output for 10 minutes, travis will terminate the job
+# to avoid that, using travis_wait
+# https://docs.travis-ci.com/user/common-build-problems/#My-builds-are-timing-out
+# this is because we are writing to log file while building to avoid travis log limit
+# https://github.com/travis-ci/travis-ci/issues/1382
+run_with_travis_wait() {
+	travis_wait 30 "$@"
+}
+
+# vim:set ts=2 sw=2 et:
