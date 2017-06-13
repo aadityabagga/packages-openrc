@@ -12,7 +12,7 @@ before_install:
 #  - mount
 #  - ls -la /dev/shm
   - echo $TRAVIS_COMMIT_RANGE
-  - echo $INIT
+#  - echo $INIT
 
 install:
 #  - .travis/scripts/install_dependencies.sh

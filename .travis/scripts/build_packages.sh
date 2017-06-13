@@ -11,9 +11,6 @@ COMMIT_RANGE=$1
 # get the changed packages
 PKGS=$(cat /tmp/packages_changed.txt)
 
-# for testing
-echo ${PKGS}
-
 # there are special flags for init system
 INIT=$2
 BUILDPKG_FLAGS=
