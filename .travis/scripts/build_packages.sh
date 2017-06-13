@@ -12,12 +12,14 @@ COMMIT_RANGE=$1
 PKGS=$(cat /tmp/packages_changed.txt)
 
 # there are special flags for init system
-INIT=$2
 BUILDPKG_FLAGS=
 [ "$INIT" = openrc ] && BUILDPKG_FLAGS="-u"
 
 # import common functions
 . .travis/scripts/functions.sh
+
+# record exit status to determine if all packages got build
+STATUS=0
 
 # build the changed packages
 for pkg in ${PKGS}; do
@@ -34,6 +36,7 @@ for pkg in ${PKGS}; do
 		# show package building output
 		buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg"
 	fi
+	[ ! "$?" -eq 0 ] && STATUS=1  # build failed
 	if [ "$VERBOSE_BUILD" -eq 1 ]; then
 		travis_ping stop
 		echo "last 150 lines of log"
@@ -43,3 +46,5 @@ for pkg in ${PKGS}; do
 
 	#cd ..
 done
+
+exit $STATUS

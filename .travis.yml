@@ -7,6 +7,7 @@ env:
     - INIT=openrc
   global:
     - VERBOSE_BUILD=1
+    - FAIL_STRICT=1
 
 before_install:
   - echo $TRAVIS_COMMIT_RANGE
@@ -18,11 +19,11 @@ install:
 
 before_script:
   - ".travis/scripts/changed_packages.sh $TRAVIS_COMMIT_RANGE || travis_terminate 0"  # nothing to do if no package changed
-  - ".travis/scripts/setup_build_environment.sh $INIT"
+  - .travis/scripts/setup_build_environment.sh
 
 script:
 #  - .travis/scripts/build_packages.sh
-  - ".travis/scripts/build_packages_in_chroot.sh $TRAVIS_COMMIT_RANGE $INIT"
+  - ".travis/scripts/build_packages_in_chroot.sh $TRAVIS_COMMIT_RANGE"
 
 after_script:
   - ls -1 "$HOME/manjaro-chroot/var/cache/manjaro-tools/pkg/unstable/x86_64"
