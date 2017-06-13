@@ -21,8 +21,8 @@ fi
 
 ALLOWED_BRANCHES=(master deploy)
 ALLOW_DEPLOY=1
-for $branch in "${ALLOWED_BRANCHES[@]}"; do
-	if [ "$CURRENT_BRANCH" = "$branch" ]; then
+for branch in "${ALLOWED_BRANCHES[@]}"; do
+	if [ "$CURRENT_BRANCH" = $branch ]; then
 		# check if check above is robust enough
 		ALLOW_DEPLOY=0
 		break
