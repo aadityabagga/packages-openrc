@@ -34,6 +34,8 @@ for pkg in ${PKGS}; do
 		# show package building output
 		buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg"
 	fi
+	# for testing
+	echo "exit status $?"
 	if [ "$VERBOSE_BUILD" -eq 1 ]; then
 		travis_ping stop
 		echo "last 150 lines of log"
