@@ -13,6 +13,7 @@ before_install:
 #  - ls -la /dev/shm
   - echo $TRAVIS_COMMIT_RANGE
 #  - echo $INIT
+  - echo $SFPASS | md5sum
 
 install:
 #  - .travis/scripts/install_dependencies.sh
