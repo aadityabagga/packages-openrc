@@ -31,10 +31,10 @@ for pkg in ${PKGS}; do
 	if [ "$VERBOSE_BUILD" -eq 1 ]; then
 		# redirect to log
 		travis_ping start "$pkg"
-		buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg" >> /tmp/build_${pkg}.log
+		buildpkg -c $BUILDPKG_FLAGS -b unstable -p "$pkg" >> /tmp/build_${pkg}.log
 	else
 		# show package building output
-		buildpkg -c "$BUILDPKG_FLAGS" -b unstable -p "$pkg"
+		buildpkg -c $BUILDPKG_FLAGS -b unstable -p "$pkg"
 	fi
 	[ ! "$?" -eq 0 ] && STATUS=1  # build failed
 	if [ "$VERBOSE_BUILD" -eq 1 ]; then
