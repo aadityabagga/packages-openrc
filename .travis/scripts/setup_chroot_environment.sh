@@ -14,7 +14,7 @@ pacman -Syy
 
 # setup makepkg
 echo 'Packager="Travis CI Builder"' >> /etc/makepkg.conf
-echo 'MAKEFLAGS="-j$(nproc)"' >> /etc/makepkg.conf
+echo "MAKEFLAGS=\"-j$(nproc)\"" >> /etc/makepkg.conf
 
 # setup user
 user=$1
