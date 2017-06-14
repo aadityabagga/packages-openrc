@@ -12,7 +12,6 @@ env:
 before_install:
   - echo $TRAVIS_COMMIT_RANGE
 #  - echo $INIT
-  - echo $ARCH_REPOS
 
 install:
 #  - .travis/scripts/install_dependencies.sh
