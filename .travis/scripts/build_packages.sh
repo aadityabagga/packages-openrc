@@ -28,6 +28,7 @@ for pkg in ${PKGS}; do
 
 	travis_fold start "build_${pkg}"
 	echo "building $pkg"
+	echo "$pkg" >> /tmp/packages_attempted.txt
 	if [ "$VERBOSE_BUILD" -eq 1 ]; then
 		# redirect to log
 		travis_ping start "$pkg"
@@ -36,7 +37,10 @@ for pkg in ${PKGS}; do
 		# show package building output
 		buildpkg -c $BUILDPKG_FLAGS -b unstable -p "$pkg"
 	fi
-	[ ! "$?" -eq 0 ] && STATUS=1  # build failed
+	if [ ! "$?" -eq 0 ]; then
+		STATUS=1  # build failed
+		echo "$pkg" >> /tmp/packages_failed.txt
+	fi
 	if [ "$VERBOSE_BUILD" -eq 1 ]; then
 		travis_ping stop
 		echo "first 150 lines of log"
