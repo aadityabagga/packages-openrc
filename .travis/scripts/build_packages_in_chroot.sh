@@ -25,21 +25,13 @@ sudo mount -o bind /dev $DEST/dev/
 sudo mount -o bind /run $DEST/run/
 sudo cp /etc/resolv.conf $DEST/etc/resolv.conf
 
-# setup additional specified pacman repos
-echo "reading extra pacman repos"
-read_config
-# add to pacman.conf
-add_repositories "${DEST}/etc/pacman.conf"
-# add to manjaro tools as well since thats used while building
-add_repositories "${DEST}/usr/share/manjaro-tools/pacman-default.conf"
-
 # setup environment in the chroot (pacman keys and stuff)
 travis_fold start setup_chroot_environment
-sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME && /bin/bash .travis/scripts/setup_chroot_environment.sh $user"
+sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd /build/$REPO_NAME && .travis/scripts/setup_chroot_environment.sh $user"
 travis_fold end setup_chroot_environment
 
 # build the packages in the chroot
-sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME && /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE"
+sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd /build/$REPO_NAME && .travis/scripts/build_packages.sh $COMMIT_RANGE"
 BUILD_STATUS=$?
 
 # cleanup
