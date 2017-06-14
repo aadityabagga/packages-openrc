@@ -35,6 +35,10 @@ travis_fold end setup_chroot_environment
 sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd /build/$REPO_NAME && .travis/scripts/build_packages.sh $COMMIT_RANGE"
 BUILD_STATUS=$?
 
+# move out the build logs
+cp -v "${CHROOT_DIR_LOC}/tmp/packages_attempted.txt" /tmp/
+cp -v "${CHROOT_DIR_LOC}/tmp/packages_failed.txt" /tmp/
+
 # cleanup
 sudo umount $DEST/proc/
 sudo umount $DEST/sys/
