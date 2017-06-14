@@ -32,11 +32,11 @@ add_repositories "$DEST"
 
 # setup environment in the chroot (pacman keys and stuff)
 travis_fold start setup_chroot_environment
-sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME; /bin/bash .travis/scripts/setup_chroot_environment.sh $user"
+sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME && /bin/bash .travis/scripts/setup_chroot_environment.sh $user"
 travis_fold end setup_chroot_environment
 
 # build the packages in the chroot
-sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME; /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE"
+sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd build/$REPO_NAME && /bin/bash .travis/scripts/build_packages.sh $COMMIT_RANGE"
 BUILD_STATUS=$?
 
 # cleanup

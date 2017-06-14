@@ -12,6 +12,7 @@ CHROOT_BUILD_DIR="${CHROOT_DIR}/${CHROOT_BUILD_DIR_NAME}"
 
 # download script to setup chroot for building
 cd "$HOME"
+
 git clone https://github.com/aadityabagga/manjaro-bootstrap.git
 cd manjaro-bootstrap
 # setup bootstrap config
@@ -28,7 +29,7 @@ travis_ping stop
 echo "last 200 lines of ${LOG_LOC}"
 tail -n 200 "$LOG_LOC"
 
-cd -
+cd "${ORIGINAL_DIR}"
 
 # copy things forward to a new directory within the chroot
 sudo mkdir "${CHROOT_BUILD_DIR}"
