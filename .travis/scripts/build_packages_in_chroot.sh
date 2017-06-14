@@ -30,9 +30,6 @@ travis_fold start setup_chroot_environment
 sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd /build/$REPO_NAME && .travis/scripts/setup_chroot_environment.sh $user"
 travis_fold end setup_chroot_environment
 
-# for testing
-echo $MAKEFLAGS
-
 # build the packages in the chroot
 sudo chroot "${CHROOT_DIR_LOC}" /bin/bash -c "cd /build/$REPO_NAME && .travis/scripts/build_packages.sh $COMMIT_RANGE"
 BUILD_STATUS=$?
