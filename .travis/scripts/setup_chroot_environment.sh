@@ -12,6 +12,9 @@ pacman-key --populate archlinux manjaro
 pacman-mirrors -g -c Germany
 pacman -Syy
 
+# setup makepkg
+echo "Packager='Travis CI Builder'" >> /etc/makepkg.conf
+
 # setup user
 user=$1
 useradd -s /bin/bash $user

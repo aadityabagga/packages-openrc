@@ -28,7 +28,10 @@ sudo cp /etc/resolv.conf $DEST/etc/resolv.conf
 # setup additional specified pacman repos
 echo "reading extra pacman repos"
 read_config
-add_repositories "$DEST"
+# add to pacman.conf
+add_repositories "${DEST}/etc/pacman.conf"
+# add to manjaro tools as well since thats used while building
+add_repositories "${DEST}/usr/share/manjaro-tools/pacman-default.conf"
 
 # setup environment in the chroot (pacman keys and stuff)
 travis_fold start setup_chroot_environment

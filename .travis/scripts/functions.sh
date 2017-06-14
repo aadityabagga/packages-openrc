@@ -40,15 +40,15 @@ read_config() {
 
 # add custom repositories to pacman.conf
 add_repositories() {
-  local arch_chroot=$1
+  local pacman_conf=$1
   for repo in "${CONFIG_REPOS[@]}"; do
     local splitarr=(${repo//=/ })
     local repo_name=${splitarr[0]}
     local repo_loc=${splitarr[1]}
-    if ! grep -q "$repo_name" "$arch_chroot/etc/pacman.conf"; then
-      echo "[${repo_name}]" | sudo tee -a "$arch_chroot/etc/pacman.conf"
-      echo "Server = ${repo_loc}" | sudo tee -a "$arch_chroot/etc/pacman.conf"
-      echo "" | sudo tee -a "$arch_chroot/etc/pacman.conf"
+    if ! grep -q "$repo_name" "$pacman_conf"; then
+      echo "[${repo_name}]" | sudo tee -a "$pacman_conf"
+      echo "Server = ${repo_loc}" | sudo tee -a "$pacman_conf"
+      echo "" | sudo tee -a "$pacman_conf"
     fi
   done
 }
