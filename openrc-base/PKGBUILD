@@ -33,7 +33,7 @@ conflicts=('systemd-sysvcompat')
 source=("cronie.initd::${_url}/sys-process/cronie/files/cronie-1.3-initd"
         "dmcrypt.confd::${_url}/sys-fs/cryptsetup/files/1.6.7-dmcrypt.confd"
         "dmcrypt.initd::${_url}/sys-fs/cryptsetup/files/1.6.7-dmcrypt.rc"
-        "nscd.initd::${_url}/sys-libs/glibc/files/nscd"
+        "nscd.initd"
         "device-mapper.confd::${_url}/sys-fs/lvm2/files/device-mapper.conf-1.02.22-r3"
         "device-mapper.initd::${_url}/sys-fs/lvm2/files/device-mapper.rc-2.02.105-r2"
         "dmeventd.initd::${_url}/sys-fs/lvm2/files/dmeventd.initd-2.02.67-r1"
